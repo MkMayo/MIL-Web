@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../App.css';
-import './Subjugator.css'
+import './Subjugator.css';
+import ImageCarousel from '../ImageCarousel.js';
 
 // JavaScript to synchronize horizontal scrolling with mouse scroll events
 const scrollingWrapper = document.querySelector('.scrolling-wrapper');
@@ -56,7 +57,49 @@ function renderCard(imageSrc, subName, dryWeight, thrusters, dimensions, maxThru
     );
   }
 
+function teamTable(data){
 
+  function rowMaker(data) {
+    return data.map((element, index) => (
+      <tr class='teamTable' key={index}>
+        {dataFiller(element)}
+      </tr>
+    ));
+  }
+
+  function dataFiller(data) {
+    return data.map((element, index) => (
+      <td key={index}>{element}</td>
+    ));
+  }
+
+  return(
+  
+  <table class='teamTable'>
+          <thead>
+              <td><strong>Name</strong></td>
+              <td><strong>Position</strong></td>
+              <td><strong>Major</strong></td>
+              <td><strong>Email</strong></td>
+          </thead>
+          <tbody >
+
+          {rowMaker(data)}
+ 
+          </tbody>
+        </table>
+  
+  );
+}
+
+const imagePaths = [
+  '/team.png',
+  '/Team-Photo-2019_1.png',
+  '/sub9_2.png',
+  '/Sub.png',
+  '/2014teams-980x360.jpg'
+  // Add more image file paths as needed
+];
 
 
 
@@ -64,9 +107,31 @@ function renderCard(imageSrc, subName, dryWeight, thrusters, dimensions, maxThru
 export default function Subjugator() {
   return (
     <>
-    <img src="/Subjugator-Logo2.png" />
+    <div class='center'>
+      <img src="/Subjugator-Logo2.png" />
+    </div>
+    
       {/* <h1 className='subjugator'>Subjugator</h1> */}
-      
+
+      <div>
+      {/* <h1>Automatic Image Carousel</h1> */}
+      {imagePaths.length > 0 && <ImageCarousel imagePaths={imagePaths} />}
+    </div>
+
+    <h1 >What is Subjugator?</h1>
+    <p>MIL’s SubjuGator is the three time champion autonomous submarine of the <a href="https://robosub.org/">Robosub</a> AUVSI/ONR underwater
+       competition {/*(2005-2007), and placed in the top 3 in eleven of the 21 years of the competition
+         (including second place in 2012, 2013 and 2014). MIL’s NaviGator AMS, is the defending champion 
+        in the Maritime RobotX Challenge (from our victory in our only entry in this biennial competition in 2016). 
+        In 2013, MIL participated for the first time in the RoboBoat AUVSI/ONR water surface vechicle 
+        competition with our PropaGator robot boat; we won! In 2014, we earned second place in the RoboBoat 
+        competition. We also won the static division of the 2011 ION Robot Lawnmower competition with MIL’s 
+        InstiGator robot lawnmower.*/}</p> 
+    <h1 >Awards</h1>
+    <p>We have placed in the top 3 in eleven of the 21 years of the competition
+         (including second place in 2012, 2013 and 2014)</p>
+
+    <h1 >Our Submarines</h1>
       {/* Horizontal scrolling cards */}
     <div class="scrolling-wrapper">
 
@@ -201,6 +266,26 @@ export default function Subjugator() {
         
         {/* Add more card elements as needed  */}
     </div>
+<h1>Team</h1>
+
+{teamTable([
+  ['Yovany Molina', 'Electrical Systems Leader', 'Electrical Engineering', 'molinay@ufl.edu'],
+  ['Cameron Brown', 'Software and Simulation Systems Leader', 'Computer Science', 'cbrown14@ufl.edu'],
+  ['Luka Bjellos', 'Mechanical Systems Leader', 'Mechanical Engineering', 'luka.bjellos@ufl.edu'],
+  ['Jarrod Sanders', 'Test Platform Development Leader', 'Computer Science', 'jarrod.sanders@ufl.edu'],
+  ['Blake Sanders', 'Software and Simulation Systems Co-Leader', 'Computer Engineering', 'blake.sanders@ufl.edu'],
+  ['Andres Pulido', 'Mechanical Systems Advisor', 'Mechanical Engineering', 'andrespulido@ufl.edu'],
+  ['Andres Castrillon', 'Mechanical Systems Co-Leader', 'Mechanical Engineering', 'andres.castrillon@ufl.edu'],
+  ['Sara Tammame', 'Software and Simulation Co-Leader', 'Computer Science', 'sara.tammame@ufl.edu'],
+  ['Aditya Ramesh', 'Electrical Systems', 'Electrical Engineering', 'aditya.ramesh@outlook.com'],
+  ['Mehron Talebi', 'Electrical Systems', 'Electrical Engineering', 'mehron.talebi@ufl.edu'],
+  ['Alex Perez', 'Systems Advisor', 'Electrical, Computer', 'alex.perez@ufl.edu'],
+  ['Dr. Eric M. Schwartz', 'Director and Faculty Advisor', 'Electrical, Mechanical, Systems', 'ems@ufl.edu']
+
+])}
+
+
+
 
     </>
   );
